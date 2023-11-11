@@ -131,9 +131,6 @@ function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
 function getLastDigit(value) {
   const str = String(value);
   const last = str[str.length - 1];
-  if (str.length === 1) {
-    return valueж
-  }
   return Number(last);
 }
 
@@ -148,8 +145,8 @@ function getLastDigit(value) {
  *     '37'     => 37
  * '-525.5'     => -525.5
  */
-function parseNumberFromString(/* value */) {
-  throw new Error('Not implemented');
+function parseNumberFromString(value) {
+  return Number(value);
 }
 
 /**
@@ -165,8 +162,8 @@ function parseNumberFromString(/* value */) {
  *   3,3,3   => 5.196152422706632
  *   1,2,3   => 3.741657386773941
  */
-function getParallelepipedDiagonal(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getParallelepipedDiagonal(a, b, c) {
+  return Math.sqrt(a ** 2 + b ** 2 + c ** 2);
 }
 
 /**
@@ -186,8 +183,8 @@ function getParallelepipedDiagonal(/* a, b, c */) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  return Math.round(num / 10 ** pow) * 10 ** pow;
 }
 
 /**
@@ -207,8 +204,18 @@ function roundToPowerOfTen(/* num, pow */) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(n) {
+  if (n < 2) {
+    return false;
+  }
+  let count = 2;
+  while (count <= n / 2) {
+    if (n % count === 0) {
+      return false;
+    }
+    count += 1;
+  }
+  return true;
 }
 
 /**
@@ -226,8 +233,12 @@ function isPrime(/* n */) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  const num = Number(value);
+  if (Number.isNaN(num) === true || num === 'undefined') {
+    return def;
+  }
+  return num;
 }
 
 /**
